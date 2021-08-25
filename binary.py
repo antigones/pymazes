@@ -2,10 +2,6 @@
 
 import numpy as np
 
-def convertToN(x):
-    if x[:-1] == 0:
-        return 1
-
 def toConsole(grid):
     output_grid = np.empty([size*3, size*3],dtype=str)
     output_grid[:] = '#'

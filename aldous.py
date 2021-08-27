@@ -1,4 +1,4 @@
-# generates a square maze (size*size) with the binary tree technique
+# generates a square maze (size*size) with the Aldous-Broder algorithm
 
 import numpy as np
 import random as rd

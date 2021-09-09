@@ -6,8 +6,8 @@ import numpy as np
 def toConsole(grid):
     output_grid = np.empty([size*3, size*3],dtype=str)
     output_grid[:] = '#'
-    result = [(i, j) for i in range(size) for j in range(size)]
-    print(result)
+    # result = [(i, j) for i in range(size) for j in range(size)]
+    
     i = 0
     j = 0
     while i < size:

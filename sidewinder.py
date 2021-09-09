@@ -1,4 +1,4 @@
-# generates a square maze (size*size) with the binary tree technique
+# generates a square maze (size*size) with the sidewinder technique
 
 import numpy as np
 import random as rd
@@ -6,7 +6,7 @@ import random as rd
 def toConsole(grid):
     output_grid = np.empty([size*3, size*3],dtype=str)
     output_grid[:] = '#'
-    result = [(i, j) for i in range(size) for j in range(size)]
+    #result = [(i, j) for i in range(size) for j in range(size)]
     
     i = 0
     j = 0
@@ -46,7 +46,7 @@ def toConsole(grid):
 
 n=1
 p=0.5
-size=10
+size=8
 
 # 1 (head) N, 0 (tail) E
 #np.random.seed(42)

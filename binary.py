@@ -3,7 +3,7 @@
 import numpy as np
 
 
-def toConsole(grid, size):
+def carve_maze(grid, size):
     output_grid = np.empty([size*3, size*3],dtype=str)
     output_grid[:] = '#'
     
@@ -50,6 +50,6 @@ processed_grid = preprocess_grid(grid, size)
 print('processed_grid')
 print(processed_grid)
 
-output = toConsole(processed_grid, size)
+output = carve_maze(processed_grid, size)
 for elm in output:
         print(" ".join(elm))

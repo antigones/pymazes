@@ -3,10 +3,9 @@
 import numpy as np
 import random as rd
 
-def toConsole(grid):
+def carve_maze(grid, size):
     output_grid = np.empty([size*3, size*3],dtype=str)
     output_grid[:] = '#'
-    #result = [(i, j) for i in range(size) for j in range(size)]
     
     i = 0
     j = 0
@@ -40,9 +39,16 @@ def toConsole(grid):
         i = i + 1
         j = 0
         
-    for elm in output_grid:
-        print(" ".join(elm))
+    return output_grid
 
+def preprocess_grid(grid, size):
+    # fix first row and last column to avoid digging outside the maze external borders
+    first_row = grid[0]
+    first_row[first_row == 1] = 0
+    grid[0] = first_row
+    for i in range(1,size):
+        grid[i,size-1] = 1
+    return grid
 
 n=1
 p=0.5
@@ -52,15 +58,12 @@ size=8
 #np.random.seed(42)
 grid = np.random.binomial(n,p, size=(size,size))
 
-# fix first row and last column to avoid digging outside the maze external borders
-first_row = grid[0]
-first_row[first_row == 1] = 0
-grid[0] = first_row
-for i in range(1,size):
-    grid[i,size-1] = 1
-print('grid')
-print(grid)
+processed_grid = preprocess_grid(grid, size)
+print('processed_grid')
+print(processed_grid)
 
-toConsole(grid)
+output = carve_maze(processed_grid, size)
+for elm in output:
+        print(" ".join(elm))
 
 

@@ -3,11 +3,6 @@
 import numpy as np
 import random as rd
 
-size=10
-
-np.random.seed(42)
-grid = np.zeros(shape=(size,size))
-
 def ald(grid,size):
     output_grid = np.empty([size*3, size*3],dtype=str)
     output_grid[:] = '#'
@@ -44,7 +39,7 @@ def ald(grid,size):
                     # carve n
                     output_grid[w-1,k] = ' '
                     output_grid[w-2,k] = ' '
-                i = i - 1
+                i -= 1
                     
         
         if neighbour_idx == 1:
@@ -53,7 +48,7 @@ def ald(grid,size):
                     # goto e
                     output_grid[w,k+1] = ' '
                     output_grid[w,k+2] = ' '
-                j = j + 1
+                j += 1
           
         if neighbour_idx == 2:
             if can_go[2]:
@@ -61,7 +56,7 @@ def ald(grid,size):
                     # goto s
                     output_grid[w+1,k] = ' '
                     output_grid[w+2,k] = ' '  
-                i = i + 1
+                i += 1
         
 
         if neighbour_idx == 3:
@@ -70,9 +65,14 @@ def ald(grid,size):
                 if grid[i,j-1] == 0:
                     output_grid[w,k-1] = ' '
                     output_grid[w,k-2] = ' '
-                j = j - 1
+                j -= 1
             
     return output_grid
+
+size=10
+
+#np.random.seed(42)
+grid = np.zeros(shape=(size,size))
 
 console_grid = ald(grid,size)
 

@@ -1,12 +1,7 @@
-# generates a square maze (size*size) with the Wilson algorithm
+# generates a square maze (size*size) with Wilson's algorithm
 
 import numpy as np
 import random as rd
-
-size=10
-
-#np.random.seed(42)
-grid = np.zeros(shape=(size,size))
 
 def wilson(grid,size):
     output_grid = np.empty([size*3, size*3],dtype=str)
@@ -97,20 +92,20 @@ def wilson(grid,size):
                     # going there from s
                     visited_from.append(1)
                    
-                    i = i - 1
+                    i -= 1
                         
             
             if neighbour_idx == 1:
                 if can_go[1]:
                     visited_from.append(2)
                     
-                    j = j + 1
+                    j += 1
             
             if neighbour_idx == 2:
                 if can_go[2]:
                     visited_from.append(3)
                    
-                    i = i + 1
+                    i += 1
             
 
             if neighbour_idx == 3:
@@ -118,9 +113,14 @@ def wilson(grid,size):
                 if can_go[3]:
                     visited_from.append(4)
                    
-                    j = j - 1
+                    j -= 1
             
     return output_grid
+
+size=10
+
+#np.random.seed(42)
+grid = np.zeros(shape=(size,size))
 
 console_grid = wilson(grid,size)
 

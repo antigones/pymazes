@@ -34,9 +34,9 @@ def carve_maze(grid, size):
                 output_grid[w-2,k] = ' '
                 previous_l = []
             
-            j = j + 1
+            j += 1
             
-        i = i + 1
+        i += 1
         j = 0
         
     return output_grid
@@ -52,7 +52,7 @@ def preprocess_grid(grid, size):
 
 n=1
 p=0.5
-size=8
+size=5
 
 # 1 (head) N, 0 (tail) E
 #np.random.seed(42)

@@ -6,3 +6,4 @@ An anthology of maze generation algorithms written with Python:
  - Sidewinder
  - Aldous-Brother
  - Wilson
+ - Masked mazes

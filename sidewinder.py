@@ -21,15 +21,18 @@ def carve_maze(grid, size):
                 output_grid[w,k+1] = ' '
                 output_grid[w,k+2] = ' '
                 previous_l.append(j)
-            if toss == 1 and w-2 >=0:
+            if toss == 1:
+                # it's impossible to carve outside after preprocessing
                 # look back, choose a random cell
-                if j > 0:
-                    if grid[i,j-1] == 0:
-                        # reaching from 0
-                        r = rd.choice(previous_l)
-                        k = r * 3 + 1
+                if grid[i,j-1] == 0:
+                    # reaching from 0
+                    # mandatory to be sure that previous_l has at least one element
+                    # if we are coming from a list of previous cells, choose one and...
+                    r = rd.choice(previous_l)
+                    k = r * 3 + 1
                    
-                
+                # ...just carve north
+                # this just carve north if this is the first element of the row (1 element loop)
                 output_grid[w-1,k] = ' '
                 output_grid[w-2,k] = ' '
                 previous_l = []

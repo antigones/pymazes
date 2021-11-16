@@ -3,7 +3,7 @@
 import numpy as np
 
 
-def carve_maze(grid, size):
+def carve_maze(grid:np.ndarray, size:int) -> np.ndarray:
     output_grid = np.empty([size*3, size*3],dtype=str)
     output_grid[:] = '#'
     
@@ -29,7 +29,7 @@ def carve_maze(grid, size):
         
     return output_grid
 
-def preprocess_grid(grid, size):
+def preprocess_grid(grid:np.ndarray, size:int) -> np.ndarray:
     # fix first row and last column to avoid digging outside the maze external borders
     first_row = grid[0]
     first_row[first_row == 1] = 0
@@ -38,18 +38,24 @@ def preprocess_grid(grid, size):
         grid[i,size-1] = 1
     return grid
 
-n=1
-p=0.5
-size=5
+def main():
+    n=1
+    p=0.5
+    size=5
 
-# 1 (head) N, 0 (tail) E
-# np.random.seed(42)
-grid = np.random.binomial(n,p, size=(size,size))
+    # 1 (head) N, 0 (tail) E
+    # np.random.seed(42)
+    grid = np.random.binomial(n,p, size=(size,size))
+    # print('grid')
+    # print(grid)
 
-processed_grid = preprocess_grid(grid, size)
-print('processed_grid')
-print(processed_grid)
+    processed_grid = preprocess_grid(grid, size)
+    # print('processed_grid')
+    # print(processed_grid)
 
-output = carve_maze(processed_grid, size)
-for elm in output:
-        print(" ".join(elm))
+    output = carve_maze(processed_grid, size)
+    for elm in output:
+            print(" ".join(elm))
+
+if __name__ == '__main__':
+    main()

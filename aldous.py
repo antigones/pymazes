@@ -3,7 +3,7 @@
 import numpy as np
 import random as rd
 
-def ald(grid,size):
+def ald(grid:np.ndarray,size:int) -> np.ndarray:
     output_grid = np.empty([size*3, size*3],dtype=str)
     output_grid[:] = '#'
     c = size*size # number of cells to be visited
@@ -69,14 +69,17 @@ def ald(grid,size):
             
     return output_grid
 
-size=10
+def main():
+    size=5
 
-#np.random.seed(42)
-grid = np.zeros(shape=(size,size))
+    #np.random.seed(42)
+    grid = np.zeros(shape=(size,size))
 
-console_grid = ald(grid,size)
+    console_grid = ald(grid,size)
 
-for elm in console_grid:
-    print(" ".join(elm))
+    for elm in console_grid:
+        print(" ".join(elm))
 
+if __name__ == '__main__':
+    main()
 

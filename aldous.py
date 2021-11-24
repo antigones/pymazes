@@ -19,8 +19,6 @@ def ald(grid:np.ndarray,size:int) -> np.ndarray:
         output_grid[w,k] = ' '
 
         can_go = [1,1,1,1]
-        # choose a random neighbour
-        neighbour_idx = rd.randrange(4) # n,e,s,w
 
         if i == 0:
             can_go[0] = 0
@@ -30,42 +28,40 @@ def ald(grid:np.ndarray,size:int) -> np.ndarray:
             can_go[3] = 0
         if j == size-1:
             can_go[1] = 0
+        
+        # it makes sense to choose neighbour among available directions
+        neighbour_idx = np.random.choice(np.nonzero(can_go)[0]) # n,e,s,w
 
         if neighbour_idx == 0:
-            # can carve n?
-            if can_go[0]:
-                # has been visited?
-                if grid[i-1,j] == 0:
-                    # carve n
-                    output_grid[w-1,k] = ' '
-                    output_grid[w-2,k] = ' '
-                i -= 1
+            # has been visited?
+            if grid[i-1,j] == 0:
+                # goto n
+                output_grid[w-1,k] = ' '
+                output_grid[w-2,k] = ' '
+            i -= 1
                     
         
         if neighbour_idx == 1:
-            if can_go[1]:
-                if grid[i,j+1] == 0:
-                    # goto e
-                    output_grid[w,k+1] = ' '
-                    output_grid[w,k+2] = ' '
-                j += 1
+            if grid[i,j+1] == 0:
+                # goto e
+                output_grid[w,k+1] = ' '
+                output_grid[w,k+2] = ' '
+            j += 1
           
         if neighbour_idx == 2:
-            if can_go[2]:
-                if grid[i+1,j] == 0:
-                    # goto s
-                    output_grid[w+1,k] = ' '
-                    output_grid[w+2,k] = ' '  
-                i += 1
+            if grid[i+1,j] == 0:
+                # goto s
+                output_grid[w+1,k] = ' '
+                output_grid[w+2,k] = ' '  
+            i += 1
         
 
         if neighbour_idx == 3:
             # goto w
-            if can_go[3]:
-                if grid[i,j-1] == 0:
-                    output_grid[w,k-1] = ' '
-                    output_grid[w,k-2] = ' '
-                j -= 1
+            if grid[i,j-1] == 0:
+                output_grid[w,k-1] = ' '
+                output_grid[w,k-2] = ' '
+            j -= 1
             
     return output_grid
 

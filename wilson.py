@@ -3,7 +3,7 @@
 import numpy as np
 import random as rd
 
-def wilson(grid,size):
+def wilson(grid:np.ndarray, size:int) -> np.ndarray:
     output_grid = np.empty([size*3, size*3],dtype=str)
     output_grid[:] = '#'
     c = size*size # number of cells to be visited
@@ -69,12 +69,10 @@ def wilson(grid,size):
             # visit a random cell
         
             visited.append([i,j])
-
+            
             #print(grid)
 
             can_go = [1,1,1,1]
-            # choose a random neighbour
-            neighbour_idx = rd.randrange(4) # n,e,s,w
 
             if i == 0:
                 can_go[0] = 0
@@ -84,40 +82,29 @@ def wilson(grid,size):
                 can_go[3] = 0
             if j == size-1:
                 can_go[1] = 0
+            
+            neighbour_idx = np.random.choice(np.nonzero(can_go)[0]) # n,e,s,w
 
             if neighbour_idx == 0:
-                # can carve n?
-                if can_go[0]:
-                    # has been visited?
-                    # going there from s
-                    visited_from.append(1)
-                   
-                    i -= 1
+                # going there from s
+                visited_from.append(1)
+                i -= 1
                         
-            
             if neighbour_idx == 1:
-                if can_go[1]:
-                    visited_from.append(2)
-                    
-                    j += 1
+                visited_from.append(2)
+                j += 1
             
             if neighbour_idx == 2:
-                if can_go[2]:
-                    visited_from.append(3)
-                   
-                    i += 1
+                visited_from.append(3)
+                i += 1
             
-
             if neighbour_idx == 3:
-                # goto w
-                if can_go[3]:
-                    visited_from.append(4)
-                   
-                    j -= 1
+                visited_from.append(4) 
+                j -= 1
             
     return output_grid
 
-size=10
+size=5
 
 #np.random.seed(42)
 grid = np.zeros(shape=(size,size))

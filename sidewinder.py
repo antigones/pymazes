@@ -10,8 +10,9 @@ def carve_maze(grid:np.ndarray, size:int) -> np.ndarray:
     i = 0
     j = 0
     
-    previous_l = []
+    
     while i < size:
+        previous_l = []
         w = i*3 + 1
         while j < size:
             k = j*3 + 1
@@ -69,6 +70,7 @@ def main():
     #np.random.seed(42)
     grid = np.random.binomial(n,p, size=(size,size))
     processed_grid = preprocess_grid(grid, size)
+
     output = carve_maze(processed_grid, size)
     output_string = maze_to_string(output)
     print(output_string)

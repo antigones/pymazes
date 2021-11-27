@@ -9,10 +9,10 @@ def carve_maze(grid:np.ndarray, size:int) -> np.ndarray:
     
     i = 0
     j = 0
-
+    
+    previous_l = []
     while i < size:
         w = i*3 + 1
-        previous_l = []
         while j < size:
             k = j*3 + 1
             toss = grid[i,j]
